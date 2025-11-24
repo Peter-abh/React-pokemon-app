@@ -1,34 +1,39 @@
 import React from 'react';
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import PokemonCard from "./pages/PokemonCard";
 import './App.css';
-import { usePokemons } from './hooks/usepokemons'; 
+//import  PokemonDetails from './pages/pokemonDetails';
+import LoginForm from './pages/LoginForm';
+import PokemonList from './pages/pokemonList';
+import Login from './pages/Login';
+import Logout from './components/Logout';
+import PokemonDetailsModal from './components/pokemonDetailsModal';
+//import about from  "./pages/about";
+//import NotFound from "./pages/NotFound";
+
+
 
 const App: React.FC = () => {
-  const { pokemons, count, removePokemon } = usePokemons();
-
+  const location = useLocation();
+  const background = location.state && location.state.background;
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <main className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold text-center my-8">
-          Notre équipe est composée de {count} Pokémon
-        </h1>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {pokemons.map(pokemon => (
-            <PokemonCard
-              key={pokemon.id}
-              id={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.image}
-              types={pokemon.types}
-              onRemove={removePokemon}
-            />
-          ))}
-        </div>
+        <Routes>
+         <Route path="/" element={<Navigate to="/pokemon" replace />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/pokemon" element={<PokemonList />} />
+          <Route path="/Logout" element={<Logout/>} />
+        </Routes>
+        {background && (
+          <Routes>
+            <Route path="/pokemon/:id" element={<PokemonDetailsModal />} />
+          </Routes>
+        )}
       </main>
     </div>
   );
 }
+
 export default App;

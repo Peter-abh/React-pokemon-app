@@ -1,20 +1,28 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import type { Pokemon } from '../models/pokemon';
 
-interface PokemonCardProps {
-  name: string;
-  image: string;
-  types: string[];
+interface PokemonCardProps extends Omit<Pokemon, 'id'> {
   id: number;
-  onRemove: (pokemonId: number) => void;
+  onRemove: (id: number) => void;
+  //onViewDetails: () => void;
 }
 
-export const PokemonCard: React.FC<PokemonCardProps> = ({ name, image, types, id, onRemove }) => {
+export const PokemonCard: React.FC<PokemonCardProps> = ({ 
+  name, 
+  picture, 
+  types, 
+  id, 
+  onRemove,
+  //onViewDetails 
+}) => {
+  const location = useLocation(); 
   return (
     <div className="w-72 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="h-64 bg-gray-50 flex items-center justify-center p-4">
-        <img 
-          src={image} 
-          alt={name} 
+        <img
+          src={picture}
+          alt={name}
           className="h-full w-auto object-contain"
         />
       </div>
@@ -24,7 +32,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name, image, types, id
         </h3>
         <div className="flex gap-2 justify-center flex-wrap">
           {types.map((type, index) => (
-            <span 
+            <span
               key={index}
               className={`px-3 py-1 rounded-full text-xs font-medium ${
                 type === 'fire' ? 'bg-red-100 text-red-800' :
@@ -40,22 +48,41 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ name, image, types, id
         </div>
       </div>
       <div className="p-4 flex justify-center border-t border-gray-100">
-        <div className="flex gap-4 justify-center mb-6">
-                  <img src="../public/supprimer.png" className="h-8 cursor-pointer" alt="corbeille" 
-                  onClick={() => onRemove(id) }/> <br />
-                </div>
-        <a
-          href={`/pokemon/${id}`}
-          className="text-blue-500 hover:text-blue-700 transition-colors"
-          title="Voir les détails"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </a>
+        <div className="flex gap-4">
+          <button
+            onClick={() => onRemove(id)}
+            className="text-red-500 hover:text-red-700"
+            title="Supprimer"
+          >
+            <img 
+              src="../public/supprimer.png" 
+              className="h-8 w-8" 
+              alt="Supprimer" 
+            />
+          </button>
+            <Link
+              to={`/pokemon/${id}`}
+              state={{ background: location }}
+              className="text-blue-500 hover:text-blue-700"
+              title="Voir les détails"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-8 w-8" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                />
+              </svg>
+              </Link>
+        </div>
       </div>
     </div>
   );
 };
-
-export default PokemonCard;

@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
+import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthenticationService from "../services/authentificationService";
 type Field = { value?: any, error?: string, isValid?: boolean };
@@ -141,13 +142,13 @@ px-4 py-3 rounded relative">
                             </div>
                         )}
                     </div>
-                    <div className="flex items-center justify-between">
+                    <div className=" form flex items-center justify-between">
                         <button
                             type="submit"
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold
+                            className="btn-connexion bg-blue-500 hover:bg-blue-700 text-white font-bold
 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
-                            Valider
+                            Se connecter
                         </button>
                     </div>
                 </div>

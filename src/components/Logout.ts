@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthenticationService from '../services/authentificationService';
 
-const Logout = () => {
+const Logout: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const Logout = () => {
         logout();
     }, [navigate]);
 
-    return
+    return ('<div>Déconnexion...</div>')
     
 };
 export default Logout;

@@ -6,7 +6,7 @@ export interface User {
 
 export default class AuthentificationService {
     static isAuthenticated: boolean = false;
-    private static readonly API_URL = 'http://localhost:8000'; // URL du backend Symfony
+    private static readonly API_URL = 'https://www.pokemons-pierre.mmi-stdie.fr/pokemon_backend/public'; // URL du backend Symfony
 
     // Méthode pour obtenir le token stocké
     static getToken(): string | null {

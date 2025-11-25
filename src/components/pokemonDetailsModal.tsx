@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import type { Pokemon } from '../models/pokemon';
 import PokemonService from '../services/pokemonService';
 
+
 const PokemonDetailsModal: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();

@@ -1,13 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { usePokemons } from "../hooks/usepokemons";
 import { PokemonCard } from "./PokemonCard";
-import PokemonDetailsModal from "../components/pokemonDetailsModal";
+//import PokemonDetailsModal from "../components/pokemonDetailsModal";
 import PokemonSearch from "../components/PokemonSearch";
-import type { Pokemon } from "../models/pokemon";
+//import type { Pokemon } from "../models/pokemon";
 
 const PokemonList: React.FC = () => {
   const { pokemons, removePokemon, loading } = usePokemons();
-  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("all");
 
@@ -36,14 +35,6 @@ const PokemonList: React.FC = () => {
   const handleSearch = (newSearchTerm: string, newSelectedType: string) => {
     setSearchTerm(newSearchTerm);
     setSelectedType(newSelectedType);
-  };
-
-  const handleViewDetails = (pokemon: Pokemon) => {
-    setSelectedPokemon(pokemon);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedPokemon(null);
   };
 
   if (!loading && pokemons.length === 0) {
@@ -88,13 +79,6 @@ const PokemonList: React.FC = () => {
             />
           ))}
         </div>
-      )}
-
-      {selectedPokemon && (
-        <PokemonDetailsModal
-          pokemon={selectedPokemon}
-          onClose={handleCloseModal}
-        />
       )}
     </div>
   );

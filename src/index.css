@@ -68,6 +68,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.btn-connexion{
+  background-color: black;
+}
+.form{
+  justify-content: center;
+}
 .avatar-btn{
   background-color: white;
 }

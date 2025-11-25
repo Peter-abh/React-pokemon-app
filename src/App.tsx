@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import './App.css';
 //import  PokemonDetails from './pages/pokemonDetails';
-import LoginForm from './pages/LoginForm';
+//import LoginForm from './pages/LoginForm';
 import PokemonList from './pages/pokemonList';
 import Login from './pages/Login';
 import Logout from './components/Logout';

@@ -77,6 +77,12 @@ button:focus-visible {
 .avatar-btn{
   background-color: white;
 }
+.delete-detail{
+  align-items: center;
+}
+.btn-delete{
+  background-color: white;
+}
 .hamburger-menu{
   background-color: black;
 }

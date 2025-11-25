@@ -48,10 +48,10 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({
         </div>
       </div>
       <div className="p-4 flex justify-center border-t border-gray-100">
-        <div className="flex gap-4">
+        <div className="delete-detail flex gap-4">
           <button
             onClick={() => onRemove(id)}
-            className="text-red-500 hover:text-red-700"
+            className="btn-delete text-red-500 hover:text-red-700"
             title="Supprimer"
           >
             <img 
